@@ -11,7 +11,6 @@ Modern SwiftUI applications often involve complex navigation flows - from authen
 1. **State Management**: Navigation state can become scattered across views, making it difficult to track the current navigation stack.
 2. **Debugging**: Understanding navigation flows during development and troubleshooting requires consistent, comprehensive logging.
 3. **Code Organization**: Different flows (login, onboarding, main content) need clear separation while maintaining a consistent pattern.
-4. **Memory Management**: Navigation controllers and their associated views need proper lifecycle management to prevent memory leaks.
 
 BaseRouter addresses these challenges through a unified, observable navigation system.
 
