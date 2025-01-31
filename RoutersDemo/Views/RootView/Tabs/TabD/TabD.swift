@@ -28,7 +28,7 @@ struct TabD: View {
         }
     }
     
-    private let navigationTitle = ContentView.Tab.d.title
+    private let navigationTitle = TabsView.Tab.d.title
     @Environment(TabDRouter.self) private var router
     @Environment(\.presentedSheet) var presentedSheet
     
@@ -39,9 +39,10 @@ struct TabD: View {
         NavigationStack(path: $router.path) {
             listView
                 .navigationTitle(navigationTitle)
-                .routerDestination(router: router,
-                                   navigationBackTitle: navigationTitle,
-                                   destination: navigationDestination)
+				.routerDestination(
+					router: router,
+					destination: navigationDestination
+				)
         }
     }
     

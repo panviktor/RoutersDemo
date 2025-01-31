@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 @Observable class TabARouter: BaseRouter {
     enum Destination: String, RouterDestination, CaseIterable {
         case viewOne

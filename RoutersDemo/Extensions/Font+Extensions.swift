@@ -8,5 +8,5 @@
 import SwiftUI
 
 extension Font {
-    static var extraLargeTitle: Font = .system(size: 70)
+	@MainActor static var extraLargeTitle: Font = .system(size: 70)
 }

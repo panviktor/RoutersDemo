@@ -1,5 +1,5 @@
 //
-//  TabDRouter.swift
+//  TabCRouter.swift
 //  RoutersDemo
 //
 //  Created by Itay Amzaleg on 10/03/2024.
@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-@Observable class TabDRouter: BaseRouter {
+@MainActor
+@Observable class TabCRouter: BaseRouter {
     enum Destination: String, RouterDestination {
-        case subview = "Tab d subview"
         case inbox
+        
+        var title: String {
+            rawValue.capitalized
+        }
     }
     
-    //Protocols
+    //Nested views
     @ObservationIgnored override var routerDestinationTypes: [any RouterDestination.Type] {
         return [Destination.self, InboxDestination.self]
     }
@@ -25,7 +29,7 @@ import SwiftUI
 }
 
 //MARK: - InboxRouterProtocol
-extension TabDRouter: InboxNavigationProtocol {
+extension TabCRouter: InboxNavigationProtocol {
     func navigate(to destination: InboxDestination) {
         path.append(destination)
     }

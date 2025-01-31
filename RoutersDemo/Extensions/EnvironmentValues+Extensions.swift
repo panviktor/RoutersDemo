@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct CurrentTabKey: EnvironmentKey {
-    static var defaultValue: Binding<ContentView.Tab> = .constant(.a)
+	static let defaultValue: Binding<TabsView.Tab> = .constant(.a)
 }
 
 struct PresentedSheetKey: EnvironmentKey {
-    static var defaultValue: Binding<PresentedSheet?> = .constant(nil)
+    static let defaultValue: Binding<TabsSheet?> = .constant(nil)
 }
 
-struct InboxRouterRouterKey: EnvironmentKey {
-    static let defaultValue: any InboxNavigationProtocol = TabCRouter()
+@MainActor
+struct InboxRouterRouterKey: @preconcurrency EnvironmentKey {
+	static let defaultValue: any InboxNavigationProtocol = TabCRouter()
 }
 
 extension EnvironmentValues {
-    var currentTab: Binding<ContentView.Tab> {
+    var currentTab: Binding<TabsView.Tab> {
         get { self[CurrentTabKey.self] }
         set { self[CurrentTabKey.self] = newValue }
     }
@@ -30,7 +31,7 @@ extension EnvironmentValues {
         set { self[InboxRouterRouterKey.self] = newValue }
     }
     
-    var presentedSheet: Binding<PresentedSheet?> {
+    var presentedSheet: Binding<TabsSheet?> {
         get { self[PresentedSheetKey.self] }
         set { self[PresentedSheetKey.self] = newValue }
     }

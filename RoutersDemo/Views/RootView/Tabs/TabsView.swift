@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TabsView.swift
 //  RoutersDemo
 //
 //  Created by Itay Amzaleg on 10/03/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TabsView: View {
     enum Tab {
         case a
         case b
@@ -28,7 +28,7 @@ struct ContentView: View {
         }
     }
     
-    @Environment(AppRouter.self) private var appRouter
+    @Environment(TabsRouter.self) private var appRouter
     
     //MARK: - Views
     var body: some View {
@@ -72,7 +72,7 @@ struct ContentView: View {
         .environment(\.currentTab, $appRouter.selectedTab)
     }
     
-    @ViewBuilder private func view(for presentedSheet: PresentedSheet) -> some View {
+    @ViewBuilder private func view(for presentedSheet: TabsSheet) -> some View {
         switch presentedSheet {
         case .viewOne:
             ViewOne()
@@ -83,5 +83,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    TabsView()
 }

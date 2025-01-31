@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 @Observable class TabBRouter: BaseRouter {
     typealias TransportationType = TransportationView.TransportationType
     

@@ -10,7 +10,7 @@ import SwiftUI
 struct TabC: View {
     typealias Destination = TabCRouter.Destination
     
-    private let navigationTitle = ContentView.Tab.c.title
+    private let navigationTitle = TabsView.Tab.c.title
     @Environment(TabCRouter.self) private var router
     
     // MARK: - Views
@@ -35,7 +35,6 @@ struct TabC: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.systemGroupedBackground)
             .routerDestination(router: router,
-                               navigationBackTitle: navigationTitle,
                                destination: navigationDestination)
             .navigationTitle(navigationTitle)
         }

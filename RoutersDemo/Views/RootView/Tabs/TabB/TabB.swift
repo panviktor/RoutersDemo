@@ -1,5 +1,5 @@
 //
-//  TabA.swift
+//  TabC.swift
 //  RoutersDemo
 //
 //  Created by Itay Amzaleg on 10/03/2024.
@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct TabA: View {
-    typealias Destination = TabARouter.Destination
+struct TabB: View {
+    typealias Destination = TabBRouter.Destination
+    typealias TransportationType = TransportationView.TransportationType
     
-    private let navigationTitle = ContentView.Tab.a.title
-    @Environment(TabARouter.self) private var router
+    private let navigationTitle = TabsView.Tab.b.title
+    @Environment(TabBRouter.self) private var router
     
     // MARK: - Views
     var body: some View {
@@ -19,29 +20,28 @@ struct TabA: View {
         
         NavigationStack(path: $router.path) {
             listView
-                .routerDestination(router: router,
-                                   navigationBackTitle: navigationTitle,
-                                   destination: navigationDestination)
+				.routerDestination(
+					router: router,
+					destination: navigationDestination
+				)
                 .navigationTitle(navigationTitle)
         }
     }
     
     @ViewBuilder private func navigationDestination(_ destination: Destination) -> some View {
         switch destination {
-        case .viewOne:
-            ViewOne()
-        case .viewTwo:
-            ViewTwo()
+        case .transportation(let type):
+            TransportationView(type: type)
         }
     }
     
     private var listView: some View {
-        List(Destination.allCases) { destination in
-            Text(destination.title)
+        List(TransportationType.allCases) { type in
+            Text(type.rawValue.capitalized)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    router.navigate(to: destination)
+                    router.navigate(to: .transportation(type: type))
                 }
         }
     }
