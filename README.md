@@ -164,7 +164,7 @@ Connect your router to SwiftUI navigation:
 
 ```swift
 struct RootView: View {
-	@EnvironmentObject private var router: RootRouter  // Use @EnvironmentObject
+	@Environment(RootRouter.self) private var router
 
 	var body: some View {
 		switch router.destination {
